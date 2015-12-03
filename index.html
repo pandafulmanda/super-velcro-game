@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://codeparkhouston.com/hs-utils/assets/lib.js"></script>
+  <link type="text/css" rel="stylesheet" href="http://codeparkhouston.com/hs-utils/assets/lib.css">
+   <link type="text/css" rel="stylesheet" href="http://codeparkhouston.com/hs-fall-2015/lesson-09/assets/list.css">
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <h1>Hello</h1>
+      <div id="display" class="container">
+      <div class="row">
+        <div id="card" class='list-group'>
+          
+        </div>
+      </div>
+    </div>
+
+    <div id="templates">
+      <div class="template card" id="item-template">
+        <h3 class="name">{{character.name}}</h3>
+        <% if(typeof character.image !== 'undefined'){ %>
+        <img class="img-responsive" src="{{character.image}}"/>
+        <% }
+        var features = _.omit(character, 'image', 'name', 'color');
+        features = _.omit(features, _.isFunction);
+        _.each(features, function(feature, featureName){
+          var featureClass = _.snakeCase(featureName).replace('_', '-');
+          var featureLabel = _.capitalize(_.words(featureName).join(' '));
+          if(_.isArray(feature)){
+            feature = feature.join(', ');
+          }%>
+          <p class="details {{featureClass}}"><strong>{{featureLabel}}:</strong> {{feature}}</p>
+        <%});%>
+      </div>
+    </div>
+  
+  
+  <script src="http://codeparkhouston.com/hs-fall-2015/lesson-09/assets/main.js"/></script>
+
+
+
+  <script src="./main.js"></script>
+
+
+</body>
+</html>
